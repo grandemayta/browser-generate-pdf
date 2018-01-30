@@ -8,7 +8,7 @@ var dist = path.resolve(__dirname, './dist');
 module.exports = {
     entry: {
         src: src + '/index.js',
-        vendor: [ 'svg-to-pdfkit', 'blob-stream' ]
+        vendor: [ 'd3', 'svg-to-pdfkit', 'blob-stream' ]
     },
     output: {
         path: dist,
