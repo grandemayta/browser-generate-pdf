@@ -14,6 +14,8 @@ handlePdf.addEventListener('click', function() {
     var stream = doc.pipe(blobStream());
 
     SVGtoPDF(doc, svg.outerHTML, 0, 0);
+
+    doc.end();
     
     stream.on('finish', function() {
         if (navigator.msSaveOrOpenBlob) {
@@ -23,7 +25,6 @@ handlePdf.addEventListener('click', function() {
             loadPdf.href = stream.toBlobURL('application/pdf');
         }
     });
-    doc.end();
 });
 
 function loadChart() {
