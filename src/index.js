@@ -1,4 +1,5 @@
 var d3 = require('d3');
+var FileSaver = require('file-saver');
 var PDFDocument = require('./pdfkit');
 var SVGtoPDF = require('svg-to-pdfkit');
 var blobStream = require('blob-stream');
@@ -18,12 +19,15 @@ handlePdf.addEventListener('click', function() {
     doc.end();
     
     stream.on('finish', function() {
-        if (navigator.msSaveOrOpenBlob) {
+        var blob = stream.toBlob('application/pdf');
+        FileSaver.saveAs(blob, "chart.pdf");
+        
+        /* if (navigator.msSaveOrOpenBlob) {
             navigator.msSaveOrOpenBlob(stream.toBlob('application/pdf'), 'my-pdf.pdf');
         } else {
             var loadPdf = document.getElementById('load-pdf');
             loadPdf.href = stream.toBlobURL('application/pdf');
-        }
+        } */
     });
 });
 
